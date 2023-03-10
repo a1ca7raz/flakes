@@ -49,7 +49,9 @@
         config = {
           allowUnfree = true;
         };
-        overlays =  utils.loader.overlays;
+        overlays =  utils.loader.overlays ++ [
+          inputs.nur.overlay
+        ];
       };
     in {
       legacyPackages = pkgs;
