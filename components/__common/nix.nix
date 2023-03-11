@@ -1,4 +1,4 @@
-{ self, ... }:
+{ self, inputs, ... }:
 {
   imports = [ self.nixosModules.nur ];  # Import NUR Repos
 
@@ -10,6 +10,9 @@
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
+
+    # https://github.com/NixOS/nixpkgs/issues/204292
+    registry.nixpkgs.flake = inputs.nixpkgs;
 
     settings = {
       experimental-features = [ "nix-command" "flakes" "auto-allocate-uids" "cgroups" ];
